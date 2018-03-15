@@ -9,8 +9,10 @@
 
 int main(int ac, char **av)
 {
+	lemipc_t *lemipc = NULL;
+
 	if (parse_params(ac, av) == 84)
 		return (84);
-	printf("OK\n");
+	check_start(lemipc, av[1]);
 	return (0);
 }

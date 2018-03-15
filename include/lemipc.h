@@ -25,5 +25,6 @@
 
 	int parse_params(int, char **);
 	void print_usage(void);
+	bool check_start(lemipc_t *, char *);
 
 #endif /* !LEMIPC_H_ */

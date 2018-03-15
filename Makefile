@@ -20,7 +20,8 @@ SRCDIR	=	src
 
 SRC     =	main.c		\
 		parse_params.c	\
-		print_usage.c
+		print_usage.c	\
+		check_start.c
 
 SRC     :=      $(addprefix $(SRCDIR)/, $(SRC))
 
