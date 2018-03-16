@@ -18,10 +18,11 @@ RM      =	rm -f
 
 SRCDIR	=	src
 
-SRC     =	main.c		\
-		parse_params.c	\
-		print_usage.c	\
-		check_start.c
+SRC     =	main.c			\
+		parse_params.c		\
+		print_usage.c		\
+		check_start.c		\
+		close_and_clean.c
 
 SRC     :=      $(addprefix $(SRCDIR)/, $(SRC))
 
