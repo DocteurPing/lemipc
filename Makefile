@@ -21,7 +21,7 @@ SRCDIR	=	src
 SRC     =	main.c			\
 		parse_params.c		\
 		print_usage.c		\
-		check_start.c		\
+		fill_main_struct.c	\
 		close_and_clean.c	\
 		display_map.c
 

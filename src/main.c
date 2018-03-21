@@ -29,7 +29,10 @@ int main(int ac, char **av)
 
 	if (parse_params(ac, av) == 84)
 		return (84);
-	lemipc = check_start(av[1]);
+	lemipc = fill_main_struct_shm(av[1]);
+	if (lemipc == NULL)
+		return (84);
+	lemipc->sem_id = fill_main_struct_sem(av[1]);
 	init_map(my_map);
 	memcpy(lemipc->addr, my_map, sizeof(map_t));
 	display_map(*my_map);

@@ -15,6 +15,7 @@
 	#include <sys/ipc.h>
 	#include <sys/types.h>
 	#include <sys/shm.h>
+	#include <sys/sem.h>
 
 	#define MAP_SIZE 40
 
@@ -37,12 +38,13 @@
 		bool is_first;
 		key_t key;
 		int shm_id;
+		int sem_id;
 		void *addr;
 	}		lemipc_t;
 
 	int parse_params(int, char **);
 	void print_usage(void);
-	lemipc_t *check_start(char *);
+	lemipc_t *fill_main_struct_shm(char *);
 	void display_map(map_t);
 
 #endif /* !LEMIPC_H_ */
