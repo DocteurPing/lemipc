@@ -31,12 +31,12 @@ lemipc_t *fill_main_struct_shm(char *pathname)
 	return (lemipc);
 }
 
-int	fill_main_struct_sem(int key, char *pathname)
+int	fill_main_struct_sem(int key)
 {
 	int sem_id = semget(key, 1, SHM_R | SHM_W);
 
 	if (sem_id == -1) {
-		sem_id = semget(key, 1, SHM_R | SHM_W);
+		sem_id = semget(key, 1, IPC_CREAT | SHM_R | SHM_W);
 		if (sem_id == -1)
 			perror("semget");
 		printf("Created sem %d\n", sem_id);

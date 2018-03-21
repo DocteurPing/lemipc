@@ -17,7 +17,7 @@
 	#include <sys/shm.h>
 	#include <sys/sem.h>
 
-	#define MAP_SIZE 40
+	#define MAP_SIZE 20
 
 	typedef struct	pos_s {
 		int x;
@@ -45,6 +45,7 @@
 	int parse_params(int, char **);
 	void print_usage(void);
 	lemipc_t *fill_main_struct_shm(char *);
+	int fill_main_struct_sem(int);
 	void display_map(map_t);
 
 #endif /* !LEMIPC_H_ */

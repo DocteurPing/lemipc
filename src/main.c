@@ -32,7 +32,7 @@ int main(int ac, char **av)
 	lemipc = fill_main_struct_shm(av[1]);
 	if (lemipc == NULL)
 		return (84);
-	lemipc->sem_id = fill_main_struct_sem(av[1]);
+	lemipc->sem_id = fill_main_struct_sem(lemipc->key);
 	init_map(my_map);
 	memcpy(lemipc->addr, my_map, sizeof(map_t));
 	display_map(*my_map);
