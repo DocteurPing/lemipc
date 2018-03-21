@@ -7,12 +7,31 @@
 
 #include "lemipc.h"
 
+void init_map(map_t *my_map)
+{
+	int x = 0;
+	int y = 0;
+
+	for (; y < MAP_SIZE; y++) {
+		x = 0;
+		for (; x < MAP_SIZE; x++) {
+			my_map->map[y][x].pid = 0;
+			my_map->map[y][x].team_nbr = 0;
+		}
+	}
+	my_map->nbr_player = 0;
+}
+
 int main(int ac, char **av)
 {
-	lemipc_t *lemipc = NULL;
+	lemipc_t *lemipc;
+	map_t *my_map = malloc(sizeof(map_t));
 
 	if (parse_params(ac, av) == 84)
 		return (84);
-	check_start(lemipc, av[1]);
+	lemipc = check_start(av[1]);
+	init_map(my_map);
+	memcpy(lemipc->addr, my_map, sizeof(map_t));
+	display_map(*my_map);
 	return (0);
 }

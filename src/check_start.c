@@ -7,25 +7,27 @@
 
 #include "lemipc.h"
 
-bool check_start(lemipc_t *lemipc, char *pathname)
+lemipc_t *check_start(char *pathname)
 {
-	lemipc = malloc(sizeof(lemipc_t));
+	lemipc_t *lemipc = malloc(sizeof(lemipc_t));
+
 	lemipc->key = ftok(pathname, 0);
-	lemipc->shm_id = shmget(lemipc->key, sizeof(map_t) + 1000, SHM_R | SHM_W);
+	lemipc->shm_id = shmget(lemipc->key, sizeof(map_t), SHM_R | SHM_W);
 	if (lemipc->shm_id == -1) {
-		lemipc->shm_id = shmget(lemipc->key, sizeof(map_t) + 1000,
-			IPC_CREAT | SHM_R | SHM_W);
-		lemipc->addr = shmat(lemipc->shm_id, NULL, SHM_R | SHM_W);
-		lemipc->is_first = true;
-		#ifdef DEBUG
-			fprintf(stderr, "Created segment %d\n", lemipc->shm_id);
-		#endif
-		return (true);
+		if ((lemipc->shm_id = shmget(lemipc->key, sizeof(map_t),
+			IPC_CREAT | SHM_R | SHM_W)) == -1)
+			perror("shmget");
+		if ((lemipc->addr = shmat(lemipc->shm_id, NULL,
+			SHM_R | SHM_W)) == NULL)
+			perror("shmat");
+		lemipc->is_first = lemipc;
+		fprintf(stderr, "Created segment %d\n", lemipc->shm_id);
+		return (lemipc);
 	}
-	#ifdef DEBUG
-		fprintf(stderr, "Using segment %d\n", lemipc->shm_id);
-	#endif
-	lemipc->is_first = false;
+	fprintf(stderr, "Using segment %d\n", lemipc->shm_id);
+	lemipc->is_first = NULL;
 	lemipc->addr = shmat(lemipc->shm_id, NULL, SHM_R | SHM_W);
-	return (false);
+	if (lemipc->addr == NULL)
+		perror("shmat");
+	return (lemipc);
 }
