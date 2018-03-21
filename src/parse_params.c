@@ -22,8 +22,7 @@ int parse_params(int ac, char **av)
 {
 	if (ac == 2 && strcmp("--help", av[1]) == 0)
 		print_usage();
-	if (ac != 3) {
+	if (ac != 3)
 		return (84);
-	}
 	return (check_nbr(av[2]));
 }

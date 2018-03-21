@@ -16,6 +16,23 @@
 	#include <sys/types.h>
 	#include <sys/shm.h>
 
+	#define MAP_SIZE 50
+
+	typedef struct	pos_s {
+		int x;
+		int y;
+	}		pos_t;
+
+	typedef struct	player_s {
+		size_t team_nbr;
+		pid_t pid;
+	}		player_t;
+
+	typedef struct map_s {
+		size_t nbr_player;
+		player_t map[MAP_SIZE][MAP_SIZE];
+	}		map_t;
+
 	typedef struct	lemipc_s {
 		bool is_first;
 		key_t key;
