@@ -16,6 +16,7 @@ bool check_start(lemipc_t *lemipc, char *pathname)
 		lemipc->shm_id = shmget(lemipc->key, sizeof(map_t),
 			IPC_CREAT | SHM_R | SHM_W);
 		lemipc->addr = shmat(lemipc->shm_id, NULL, SHM_R | SHM_W);
+		lemipc->is_first = true;
 		#ifdef DEBUG
 			fprintf(stderr, "Created segment %d\n", lemipc->shm_id);
 		#endif
@@ -24,6 +25,7 @@ bool check_start(lemipc_t *lemipc, char *pathname)
 	#ifdef DEBUG
 		fprintf(stderr, "Using segment %d\n", lemipc->shm_id);
 	#endif
+	lemipc->is_first = false;
 	lemipc->addr = shmat(lemipc->shm_id, NULL, SHM_R | SHM_W);
 	return (false);
 }

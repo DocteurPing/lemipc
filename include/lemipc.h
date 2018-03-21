@@ -16,7 +16,7 @@
 	#include <sys/types.h>
 	#include <sys/shm.h>
 
-	#define MAP_SIZE 50
+	const int map_size = 50;
 
 	typedef struct	pos_s {
 		int x;
@@ -30,7 +30,7 @@
 
 	typedef struct map_s {
 		size_t nbr_player;
-		player_t map[MAP_SIZE][MAP_SIZE];
+		player_t map[map_size][map_size];
 	}		map_t;
 
 	typedef struct	lemipc_s {
