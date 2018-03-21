@@ -20,12 +20,12 @@ lemipc_t *check_start(char *pathname)
 		if ((lemipc->addr = shmat(lemipc->shm_id, NULL,
 			SHM_R | SHM_W)) == NULL)
 			perror("shmat");
-		lemipc->is_first = lemipc;
+		lemipc->is_first = true;
 		fprintf(stderr, "Created segment %d\n", lemipc->shm_id);
 		return (lemipc);
 	}
 	fprintf(stderr, "Using segment %d\n", lemipc->shm_id);
-	lemipc->is_first = NULL;
+	lemipc->is_first = false;
 	lemipc->addr = shmat(lemipc->shm_id, NULL, SHM_R | SHM_W);
 	if (lemipc->addr == NULL)
 		perror("shmat");
