@@ -40,7 +40,7 @@ int	fill_main_struct_sem(int key, char *pathname)
 		if (sem_id == -1)
 			perror("semget");
 		printf("Created sem %d\n", sem_id);
-		semctl(sem_id, 0, SETVAL, 4);
+		semctl(sem_id, 0, SETVAL, 1);
 		return (sem_id);
 	}
 	printf("Using sem %d\n", sem_id);
