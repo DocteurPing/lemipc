@@ -22,7 +22,8 @@ SRC     =	main.c			\
 		parse_params.c		\
 		print_usage.c		\
 		check_start.c		\
-		close_and_clean.c
+		close_and_clean.c	\
+		display_map.c
 
 SRC     :=      $(addprefix $(SRCDIR)/, $(SRC))
 
