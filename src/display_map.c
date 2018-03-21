@@ -22,7 +22,7 @@ void display_map(map_t map)
 			if (map.map[y][x].team_nbr == 0)
 				printf("  ");
 			else
-				printf("%c ", map.map[y][x].team_nbr);
+				printf("%ld ", map.map[y][x].team_nbr);
 		}
 		printf("|\n");
 	}
