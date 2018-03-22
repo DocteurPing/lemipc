@@ -44,11 +44,13 @@
 		void *addr;
 	}		lemipc_t;
 
-	map_t *init_player(map_t *, char *);
+	map_t *init_player(lemipc_t *, char *);
 	int parse_params(int, char **);
 	void print_usage(void);
 	lemipc_t *fill_main_struct_shm(char *);
 	int fill_main_struct_sem(int);
 	void display_map(map_t);
+	bool get_access_memory(int);
+	bool left_memory_access(int);
 
 #endif /* !LEMIPC_H_ */

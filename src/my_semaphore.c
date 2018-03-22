@@ -23,7 +23,7 @@ bool	get_access_memory(int id)
 bool	left_memory_access(int id)
 {
 	struct sembuf	sops;
-	
+
 	if (semctl(id, 0, GETVAL) == 1)
 		return (false);
 	sops.sem_num = 0;
