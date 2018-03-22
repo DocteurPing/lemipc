@@ -25,7 +25,8 @@ SRC     =	main.c			\
 		close_and_clean.c	\
 		init_player.c 		\
 		display_map.c		\
-		my_semaphore.c
+		my_semaphore.c		\
+		game_loop.c
 
 SRC     :=      $(addprefix $(SRCDIR)/, $(SRC))
 

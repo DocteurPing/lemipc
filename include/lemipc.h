@@ -52,5 +52,6 @@
 	void display_map(map_t);
 	bool get_access_memory(int);
 	bool left_memory_access(int);
+	void game_loop(lemipc_t *);
 
 #endif /* !LEMIPC_H_ */
