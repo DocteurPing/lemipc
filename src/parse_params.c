@@ -24,5 +24,9 @@ int parse_params(int ac, char **av)
 		print_usage();
 	if (ac != 3)
 		return (84);
-	return (check_nbr(av[2]));
+	if (check_nbr(av[2]) == 84)
+		return (84);
+	if (atoi(av[2]) == 0)
+		return (84);
+	return (0);
 }
