@@ -23,6 +23,7 @@ SRC     =	main.c			\
 		print_usage.c		\
 		fill_main_struct.c	\
 		close_and_clean.c	\
+		init_player.c 		\
 		display_map.c
 
 SRC     :=      $(addprefix $(SRCDIR)/, $(SRC))

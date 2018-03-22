@@ -34,6 +34,7 @@ int main(int ac, char **av)
 		return (84);
 	lemipc->sem_id = fill_main_struct_sem(lemipc->key);
 	init_map(my_map);
+	my_map = init_player(my_map, av[2]);
 	memcpy(lemipc->addr, my_map, sizeof(map_t));
 	display_map(*my_map);
 	return (0);

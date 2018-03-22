@@ -16,6 +16,8 @@
 	#include <sys/types.h>
 	#include <sys/shm.h>
 	#include <sys/sem.h>
+	#include <time.h>
+	#include <unistd.h>
 
 	#define MAP_SIZE 20
 
@@ -42,6 +44,7 @@
 		void *addr;
 	}		lemipc_t;
 
+	map_t *init_player(map_t *, char *);
 	int parse_params(int, char **);
 	void print_usage(void);
 	lemipc_t *fill_main_struct_shm(char *);
