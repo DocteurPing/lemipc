@@ -12,6 +12,8 @@ CFLAGS  +=      -Wcast-align -Wshadow -Wredundant-decls -Wfloat-equal
 CFLAGS  +=      -Wundef -Wlogical-op -Winline -Wdouble-promotion
 CFLAGS  +=      -Wunreachable-code -Iinclude/ -Ofast
 
+LFLAGS	=	-lncurses
+
 NAME    =	lemipc
 
 RM      =	rm -f

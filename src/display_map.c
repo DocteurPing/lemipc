@@ -7,26 +7,36 @@
 
 #include "lemipc.h"
 
-void display_map(map_t map)
+void display_inside_map(map_t map)
 {
 	int x = 0;
 	int y = 0;
 
-	for (x = 0; x < MAP_SIZE * 2 + 3; x++)
-		printf("-");
-	printf("\n");
 	for (; y < MAP_SIZE; y++) {
 		x = 0;
-		printf("| ");
+		printw("|");
 		for (; x < MAP_SIZE; x++) {
 			if (map.map[y][x].team_nbr == 0)
-				printf("  ");
-			else
-				printf("%ld ", map.map[y][x].team_nbr);
+				printw(" ");
+			else {
+				attron(COLOR_PAIR(map.map[y][x].team_nbr));
+				printw(" ");
+				attroff(COLOR_PAIR(map.map[y][x].team_nbr));
+			}
 		}
-		printf("|\n");
+		printw("|\n");
 	}
-	for (x = 0; x < MAP_SIZE * 2 + 3; x++)
-		printf("-");
-	printf("\n");
+}
+
+void display_map(map_t map)
+{
+	int x = 0;
+
+	for (x = 0; x < MAP_SIZE + 2; x++)
+		printw("-");
+	printw("\n");
+	display_inside_map(map);
+	for (x = 0; x < MAP_SIZE + 2; x++)
+		printw("-");
+	printw("\n");
 }

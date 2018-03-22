@@ -18,6 +18,7 @@
 	#include <sys/sem.h>
 	#include <time.h>
 	#include <unistd.h>
+	#include <ncurses.h>
 
 	#define MAP_SIZE 20
 
