@@ -12,6 +12,7 @@ void close_and_clean(lemipc_t *lemipc)
 	#ifdef DEBUG
 		fprintf(stderr, "cleaning all...");
 	#endif
-	shmctl(lemipc->shm_id, IPC_RMID, NULL);
+	shmctl(lemipc->shm_id, 0, IPC_RMID);
+	semctl(lemipc->sem_id, 0, IPC_RMID);
 	free(lemipc);
 }

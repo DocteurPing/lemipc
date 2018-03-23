@@ -51,4 +51,6 @@ void game_loop(lemipc_t *lemipc)
 	}
 	if (lemipc->is_first)
 		end(mainwin);
+	if (((map_t *)lemipc->addr)->nbr_player == 1)
+		close_and_clean(lemipc);
 }
