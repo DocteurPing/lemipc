@@ -26,7 +26,7 @@ char *map_to_str(map_t map)
 	return (str);
 }
 
-void init_all_color()
+void init_all_color(void)
 {
 	start_color();
 	init_pair(1, COLOR_WHITE, COLOR_WHITE);
@@ -47,7 +47,6 @@ void game_loop(lemipc_t *lemipc)
 		init_all_color();
 	}
 	while (1) {
-		lemipc = move_left(lemipc);
 		if (lemipc->is_first) {
 			clear();
 			display_map(*(map_t *)lemipc->addr);

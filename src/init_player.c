@@ -23,7 +23,7 @@ lemipc_t *init_player(lemipc_t *lemipc, char *team_char)
 	}
 	lemipc->pos.x = x;
 	lemipc->pos.y = y;
-	tmp->nbr_player += 1; 
+	tmp->nbr_player += 1;
 	tmp->map[y][x].team_nbr = team_nbr;
 	tmp->map[y][x].pid = pid;
 	left_memory_access(lemipc->sem_id);

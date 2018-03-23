@@ -12,22 +12,20 @@ lemipc_t *move_player(lemipc_t *lemipc, int x, int y)
 	map_t *tmp = (map_t *)lemipc->addr;
 	int posy = lemipc->pos.y;
 	int posx = lemipc->pos.x;
-	if ((posx + x) >= MAP_SIZE 
-	|| (posy + y) >= MAP_SIZE
-	|| (posx + x) < 0
-	|| (posy + y) < 0) {
+	if ((posx + x) >= MAP_SIZE || (posy + y) >= MAP_SIZE
+	|| (posx + x) < 0 || (posy + y) < 0) {
 		return lemipc;
 	}
-	printf("teamp : %ld", tmp->map[posy][posx].team_nbr);
 	if (tmp->map[posy + y][posx + x].team_nbr == 0) {
-	get_access_memory(lemipc->sem_id);
-		tmp->map[posy + y][posx + x].team_nbr = tmp->map[posy][posx].team_nbr;
+		get_access_memory(lemipc->sem_id);
+		tmp->map[posy + y][posx + x].team_nbr =
+			tmp->map[posy][posx].team_nbr;
 		tmp->map[posy + y][posx + x].pid = tmp->map[posy][posx].pid;
 		tmp->map[posy][posx].team_nbr = 0;
 		tmp->map[posy][posx].pid = 0;
 		lemipc->pos.x = posx + x;
 		lemipc->pos.y = posy + y;
-	left_memory_access(lemipc->sem_id);
+		left_memory_access(lemipc->sem_id);
 	}
 	return lemipc;
 }
