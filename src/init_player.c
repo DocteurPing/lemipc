@@ -18,8 +18,8 @@ map_t *init_player(lemipc_t *lemipc, char *team_char)
 	srand(time(NULL));
 	get_access_memory(lemipc->sem_id);
 	while (tmp->map[x][y].team_nbr != 0) {
-		int x = rand() % MAP_SIZE + 0;
-		int y = rand() % MAP_SIZE + 0;
+		x = rand() % MAP_SIZE + 0;
+		y = rand() % MAP_SIZE + 0;
 	}
 	tmp->map[x][y].team_nbr = team_nbr;
 	tmp->map[x][y].pid = pid;
