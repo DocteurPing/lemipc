@@ -38,6 +38,7 @@ static void end(WINDOW *mainwin)
 void game_loop(lemipc_t *lemipc)
 {
 	WINDOW *mainwin;
+	team_player_t *tmp = get_tab_player((map_t *)lemipc->addr);
 
 	if (lemipc->is_first)
 		mainwin = setup();

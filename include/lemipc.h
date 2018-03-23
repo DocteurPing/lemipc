@@ -46,6 +46,11 @@
 		void *addr;
 	}		lemipc_t;
 
+	typedef struct	team_player_s {
+		int team;
+		int nbr;
+	}		team_player_t;
+
 	lemipc_t *move_player(lemipc_t *, int, int);
 	int parse_params(int, char **);
 	void print_usage(void);
@@ -61,5 +66,6 @@
 	lemipc_t *move_top(lemipc_t *);
 	lemipc_t *move_down(lemipc_t *);
 	void close_and_clean(lemipc_t *);
-	
+	team_player_t *get_tab_player(map_t *);
+
 #endif /* !LEMIPC_H_ */
