@@ -39,7 +39,7 @@ int main(int ac, char **av)
 			return (84);
 		memcpy(lemipc->addr, my_map, sizeof(map_t));
 	}
-	lemipc->addr = init_player(lemipc, av[2]);
+	lemipc = init_player(lemipc, av[2]);
 	game_loop(lemipc);
 	return (0);
 }

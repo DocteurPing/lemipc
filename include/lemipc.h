@@ -42,17 +42,22 @@
 		key_t key;
 		int shm_id;
 		int sem_id;
+		pos_t pos;
 		void *addr;
 	}		lemipc_t;
 
-	map_t *init_player(lemipc_t *, char *);
+	lemipc_t *move_player(lemipc_t *, int, int);
 	int parse_params(int, char **);
 	void print_usage(void);
 	lemipc_t *fill_main_struct_shm(char *);
 	int fill_main_struct_sem(int);
 	void display_map(map_t);
+	void game_loop(lemipc_t *);
+	lemipc_t *init_player(lemipc_t *, char *);
 	void get_access_memory(int);
 	void left_memory_access(int);
-	void game_loop(lemipc_t *);
-
+	lemipc_t *move_left(lemipc_t *);
+	lemipc_t *move_right(lemipc_t *);
+	lemipc_t *move_top(lemipc_t *);
+	lemipc_t *move_down(lemipc_t *);
 #endif /* !LEMIPC_H_ */
