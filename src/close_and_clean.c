@@ -12,7 +12,14 @@ void close_and_clean(lemipc_t *lemipc)
 	#ifdef DEBUG
 		fprintf(stderr, "cleaning all...");
 	#endif
-	shmctl(lemipc->shm_id, 0, IPC_RMID);
-	semctl(lemipc->sem_id, 0, IPC_RMID);
-	free(lemipc);
+	get_access_memory(lemipc->sem_id);
+	((map_t *)lemipc->addr)->nbr_player--;
+	((map_t *)lemipc->addr)->map[lemipc->pos.y][lemipc->pos.x].team_nbr = 0;
+	((map_t *)lemipc->addr)->map[lemipc->pos.y][lemipc->pos.x].pid = 0;
+	left_memory_access(lemipc->sem_id);
+	if (((map_t *)lemipc->addr)->nbr_player == 1) {
+		shmctl(lemipc->shm_id, 0, IPC_RMID);
+		semctl(lemipc->sem_id, 0, IPC_RMID);
+		free(lemipc);
+	}
 }
