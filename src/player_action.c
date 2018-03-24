@@ -33,7 +33,6 @@ lemipc_t *move_player(lemipc_t *lemipc, int x, int y)
 lemipc_t *move_left(lemipc_t *lemipc)
 {
 	lemipc_t *tmp = move_player(lemipc, -1, 0);
-	printf("tmp : %p\n", (void *)tmp);
 	return tmp;
 }
 
