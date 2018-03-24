@@ -41,7 +41,8 @@ void game_loop(lemipc_t *lemipc)
 
 	if (lemipc->is_first)
 		mainwin = setup();
-	while (1) {
+	while (is_alive(lemipc)) {
+		move_left(lemipc);
 		if (lemipc->is_first) {
 			clear();
 			display_map(*(map_t *)lemipc->addr);

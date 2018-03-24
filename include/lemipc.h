@@ -46,6 +46,7 @@
 		void *addr;
 	}		lemipc_t;
 
+	bool is_alive(lemipc_t *);
 	lemipc_t *move_player(lemipc_t *, int, int);
 	int parse_params(int, char **);
 	void print_usage(void);
