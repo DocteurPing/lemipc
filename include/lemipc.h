@@ -39,6 +39,7 @@
 
 	typedef struct	lemipc_s {
 		bool is_first;
+		bool ncurses;
 		key_t key;
 		int shm_id;
 		int sem_id;
@@ -57,6 +58,7 @@
 	lemipc_t *fill_main_struct_shm(char *);
 	int fill_main_struct_sem(int);
 	void display_map(map_t);
+	void display_map_ncurses(map_t);
 	void game_loop(lemipc_t *);
 	lemipc_t *init_player(lemipc_t *, char *);
 	void get_access_memory(int);
@@ -67,5 +69,6 @@
 	lemipc_t *move_down(lemipc_t *);
 	void close_and_clean(lemipc_t *);
 	team_player_t *get_tab_player(map_t *);
+	bool is_ncurses(int ac, char **av);
 
 #endif /* !LEMIPC_H_ */

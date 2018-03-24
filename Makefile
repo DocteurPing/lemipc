@@ -30,7 +30,8 @@ SRC     =	main.c			\
 		my_semaphore.c		\
 		player_action.c		\
 		game_loop.c		\
-		get_tab_player.c
+		get_tab_player.c	\
+		display_map_ncurses.c
 
 SRC     :=      $(addprefix $(SRCDIR)/, $(SRC))
 

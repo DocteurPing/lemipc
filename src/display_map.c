@@ -14,17 +14,14 @@ void display_inside_map(map_t map)
 
 	for (; y < MAP_SIZE; y++) {
 		x = 0;
-		printw("|");
+		printf("|");
 		for (; x < MAP_SIZE; x++) {
 			if (map.map[y][x].team_nbr == 0)
-				printw(" ");
-			else {
-				attron(COLOR_PAIR(map.map[y][x].team_nbr));
-				printw(" ");
-				attroff(COLOR_PAIR(map.map[y][x].team_nbr));
-			}
+				printf(" ");
+			else
+				printf("%ld", map.map[y][x].team_nbr);
 		}
-		printw("|\n");
+		printf("|\n");
 	}
 }
 
@@ -33,10 +30,10 @@ void display_map(map_t map)
 	int x = 0;
 
 	for (x = 0; x < MAP_SIZE + 2; x++)
-		printw("-");
-	printw("\n");
+		printf("-");
+	printf("\n");
 	display_inside_map(map);
 	for (x = 0; x < MAP_SIZE + 2; x++)
-		printw("-");
-	printw("\n");
+		printf("-");
+	printf("\n");
 }
