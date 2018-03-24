@@ -7,10 +7,7 @@
 
 CC      =	gcc
 
-CFLAGS  =	-pedantic -Wall -Wextra -Winit-self -Wwrite-strings
-CFLAGS  +=      -Wcast-align -Wshadow -Wredundant-decls -Wfloat-equal
-CFLAGS  +=      -Wlogical-op -Winline -Wdouble-promotion
-CFLAGS  +=      -Wunreachable-code -Iinclude/ -Ofast
+CFLAGS  =	-W -Wall -Wextra -Iinclude
 
 LFLAGS	=	-lncurses
 
