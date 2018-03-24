@@ -31,16 +31,11 @@ SRC     =	main.c			\
 		player_action.c		\
 		game_loop.c		\
 		get_tab_player.c	\
-<<<<<<< HEAD
 		is_alive.c		\
 		display_map_ncurses.c	\
 		check_end.c		\
 		continue_display.c	\
 		check_start.c
-=======
-		display_map_ncurses.c \
-		is_alive.c
->>>>>>> 07ad9759c618d14e942de096c9c46812e1d032c1
 
 SRC     :=      $(addprefix $(SRCDIR)/, $(SRC))
 
