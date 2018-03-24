@@ -38,18 +38,21 @@ static void end(WINDOW *mainwin)
 void game_loop(lemipc_t *lemipc)
 {
 	WINDOW *mainwin;
+	team_player_t *tmp = get_tab_player((map_t *)lemipc->addr);
 
-	if (lemipc->is_first)
+	if (lemipc->is_first && lemipc->ncurses)
 		mainwin = setup();
 	while (is_alive(lemipc)) {
-		if (lemipc->is_first) {
+		if (lemipc->is_first && lemipc->ncurses) {
 			clear();
-			display_map(*(map_t *)lemipc->addr);
+			display_map_ncurses(*(map_t *)lemipc->addr);
 			refresh();
 		}
+		else if (lemipc->is_first)
+			display_map(*(map_t *)lemipc->addr);
 		sleep(1);
 	}
-	if (lemipc->is_first)
+	if (lemipc->is_first && lemipc->ncurses)
 		end(mainwin);
 	if (((map_t *)lemipc->addr)->nbr_player == 1)
 		close_and_clean(lemipc);

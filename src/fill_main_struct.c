@@ -46,3 +46,9 @@ int	fill_main_struct_sem(int key)
 	printf("Using sem %d\n", sem_id);
 	return (sem_id);
 }
+
+bool	is_ncurses(int ac, char **av) {
+	if (ac == 4 && strcmp("-n", av[3]) == 0)
+		return (true);
+	return (false);
+}
