@@ -18,13 +18,16 @@ static void init_all_color(void)
 	init_pair(6, COLOR_CYAN, COLOR_CYAN);
 }
 
-static WINDOW *setup(void)
+static WINDOW *setup(map_t map)
 {
 	WINDOW *mainwin;
 
 	mainwin = initscr();
 	noecho();
 	init_all_color();
+	clear();
+	display_map_ncurses(map);
+	refresh();
 	return (mainwin);
 }
 
@@ -38,10 +41,11 @@ static void end(WINDOW *mainwin)
 void game_loop(lemipc_t *lemipc)
 {
 	WINDOW *mainwin;
-	team_player_t *tmp = get_tab_player((map_t *)lemipc->addr);
 
 	if (lemipc->is_first && lemipc->ncurses)
-		mainwin = setup();
+		mainwin = setup(*(map_t *)lemipc->addr);
+	while (!check_start((map_t*)lemipc->addr))
+		sleep(1);
 	while (is_alive(lemipc)) {
 		if (lemipc->is_first && lemipc->ncurses) {
 			clear();
@@ -52,8 +56,9 @@ void game_loop(lemipc_t *lemipc)
 			display_map(*(map_t *)lemipc->addr);
 		sleep(1);
 	}
+	while (lemipc->is_first && !check_end((map_t*)lemipc->addr))
+		continue_display(lemipc);
 	if (lemipc->is_first && lemipc->ncurses)
 		end(mainwin);
-	if (((map_t *)lemipc->addr)->nbr_player == 1)
-		close_and_clean(lemipc);
+	close_and_clean(lemipc);
 }

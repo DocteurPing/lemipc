@@ -9,7 +9,7 @@ CC      =	gcc
 
 CFLAGS  =	-pedantic -Wall -Wextra -Winit-self -Wwrite-strings
 CFLAGS  +=      -Wcast-align -Wshadow -Wredundant-decls -Wfloat-equal
-CFLAGS  +=      -Wundef -Wlogical-op -Winline -Wdouble-promotion
+CFLAGS  +=      -Wlogical-op -Winline -Wdouble-promotion
 CFLAGS  +=      -Wunreachable-code -Iinclude/ -Ofast
 
 LFLAGS	=	-lncurses
@@ -31,8 +31,11 @@ SRC     =	main.c			\
 		player_action.c		\
 		game_loop.c		\
 		get_tab_player.c	\
-		display_map_ncurses.c
 		is_alive.c		\
+		display_map_ncurses.c	\
+		check_end.c		\
+		continue_display.c	\
+		check_start.c
 
 SRC     :=      $(addprefix $(SRCDIR)/, $(SRC))
 

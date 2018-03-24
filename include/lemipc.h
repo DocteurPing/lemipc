@@ -71,5 +71,8 @@
 	void close_and_clean(lemipc_t *);
 	team_player_t *get_tab_player(map_t *);
 	bool is_ncurses(int ac, char **av);
+	bool check_end(map_t *);
+	bool check_start(map_t *);
+	void continue_display(lemipc_t *);
 
 #endif /* !LEMIPC_H_ */
