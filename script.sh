@@ -2,6 +2,6 @@
 
 for i in `seq 1 $1`
 do 
-	./lemipc `pwd` $2 &
-	sleep 0.1
+	./lemipc `pwd` $2 -n &
+	./lemipc `pwd` $3 -n &
 done
