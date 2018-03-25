@@ -20,7 +20,7 @@ pos_t	find_enemy(pos_t my_pos, size_t nbr_team, map_t *map)
 		for (; x < MAP_SIZE; x++) {
 			if (map->map[y][x].team_nbr != nbr_team &&
 				map->map[y][x].team_nbr != 0) {
-				curr_dist = sqrt(pow(x - my_pos.x, 2) + 
+				curr_dist = sqrt(pow(x - my_pos.x, 2) +
 					pow(y - my_pos.y, 2));
 				if (curr_dist < distance) {
 					distance = curr_dist;
@@ -35,7 +35,7 @@ pos_t	find_enemy(pos_t my_pos, size_t nbr_team, map_t *map)
 
 lemipc_t *move_ia(lemipc_t *lemipc)
 {
-	pos_t pos = find_enemy(lemipc->pos, 
+	pos_t pos = find_enemy(lemipc->pos,
 	((map_t *)lemipc->addr)->map[lemipc->pos.y][lemipc->pos.x].team_nbr,
 	((map_t *)lemipc->addr));
 	int random_nbr = rand() % 4;
