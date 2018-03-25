@@ -9,15 +9,12 @@
 
 pos_t	find_enemy(pos_t my_pos, size_t nbr_team, map_t *map)
 {
-	int x = 0;
-	int y = 0;
 	int distance = 1000;
 	int curr_dist;
 	pos_t to_return;
 
-	for (; y < MAP_SIZE; y++) {
-		x = 0;
-		for (; x < MAP_SIZE; x++) {
+	for (int y = 0; y < MAP_SIZE; y++) {
+		for (int x = 0; x < MAP_SIZE; x++) {
 			if (map->map[y][x].team_nbr != nbr_team &&
 				map->map[y][x].team_nbr != 0) {
 				curr_dist = sqrt(pow(x - my_pos.x, 2) +

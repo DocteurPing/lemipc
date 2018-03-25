@@ -13,11 +13,12 @@ int check_others(lemipc_t *lemipc, int team_nbr)
 	map_t *tmp = (map_t *)lemipc->addr;
 	int y = lemipc->pos.y;
 	int x = lemipc->pos.x;
+	int cteam;
 
 	for (int i = y > 0 ? -1 : 0; i <= 1; i++) {
 		for (int j = x > 0 ? -1 : 0; j <= 1; j++) {
 			if (j + x < MAP_SIZE && i + y < MAP_SIZE) {
-				int cteam = tmp->map[y + i][x + j].team_nbr;
+				cteam = tmp->map[y + i][x + j].team_nbr;
 				if (cteam == team_nbr) {
 					count += 1;
 				}
