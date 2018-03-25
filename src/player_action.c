@@ -32,24 +32,48 @@ lemipc_t *move_player(lemipc_t *lemipc, int x, int y)
 
 lemipc_t *move_left(lemipc_t *lemipc)
 {
-	lemipc_t *tmp = move_player(lemipc, -1, 0);
-	return tmp;
+	pos_t tmp = lemipc->pos;
+
+	lemipc = move_player(lemipc, -1, 0);
+	if (lemipc->pos.x == tmp.x && lemipc->pos.y == tmp.y)
+		lemipc = move_player(lemipc, 0, 1);
+	if (lemipc->pos.x == tmp.x && lemipc->pos.y == tmp.y)
+		lemipc = move_player(lemipc, 0, -1);
+	return lemipc;
 }
 
 lemipc_t *move_right(lemipc_t *lemipc)
 {
+	pos_t tmp = lemipc->pos;
+
 	lemipc = move_player(lemipc, 1, 0);
+	if (lemipc->pos.x == tmp.x && lemipc->pos.y == tmp.y)
+		lemipc = move_player(lemipc, 0, 1);
+	if (lemipc->pos.x == tmp.x && lemipc->pos.y == tmp.y)
+		lemipc = move_player(lemipc, 0, -1);
 	return lemipc;
 }
 
 lemipc_t *move_top(lemipc_t *lemipc)
 {
+	pos_t tmp = lemipc->pos;
+
 	lemipc = move_player(lemipc, 0, -1);
+	if (lemipc->pos.x == tmp.x && lemipc->pos.y == tmp.y)
+		lemipc = move_player(lemipc, 1, 0);
+	if (lemipc->pos.x == tmp.x && lemipc->pos.y == tmp.y)
+		lemipc = move_player(lemipc, -1, 0);
 	return lemipc;
 }
 
 lemipc_t *move_down(lemipc_t *lemipc)
 {
+	pos_t tmp = lemipc->pos;
+
 	lemipc = move_player(lemipc, 0, 1);
+	if (lemipc->pos.x == tmp.x && lemipc->pos.y == tmp.y)
+		lemipc = move_player(lemipc, 1, 0);
+	if (lemipc->pos.x == tmp.x && lemipc->pos.y == tmp.y)
+		lemipc = move_player(lemipc, -1, 0);
 	return lemipc;
 }
