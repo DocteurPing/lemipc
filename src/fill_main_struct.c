@@ -20,10 +20,8 @@ lemipc_t *fill_main_struct_shm(char *pathname)
 			SHM_R | SHM_W)) == NULL)
 			perror("shmat");
 		lemipc->is_first = true;
-		fprintf(stderr, "Created segment %d\n", lemipc->shm_id);
 		return (lemipc);
 	}
-	fprintf(stderr, "Using segment %d\n", lemipc->shm_id);
 	lemipc->is_first = false;
 	lemipc->addr = shmat(lemipc->shm_id, NULL, SHM_R | SHM_W);
 	if (lemipc->addr == NULL)
@@ -39,11 +37,15 @@ int	fill_main_struct_sem(int key)
 		sem_id = semget(key, 1, IPC_CREAT | SHM_R | SHM_W);
 		if (sem_id == -1)
 			perror("semget");
+		#ifdef DEBUG
 		printf("Created sem %d\n", sem_id);
+		#endif
 		semctl(sem_id, 0, SETVAL, 1);
 		return (sem_id);
 	}
+	#ifdef DEBUG
 	printf("Using sem %d\n", sem_id);
+	#endif
 	return (sem_id);
 }
 
