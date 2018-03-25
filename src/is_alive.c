@@ -34,17 +34,16 @@ bool is_alive(lemipc_t *lemipc)
 	int y = lemipc->pos.y;
 	int x = lemipc->pos.x;
 	int tn = tmp->map[y][x].team_nbr;
+	int eteam;
 
 	for (int i = y > 0 ? -1 : 0; i <= 1; i++) {
 		for (int j = x > 0 ? -1 : 0; j <= 1; j++) {
 			if (j + x < MAP_SIZE && i + y < MAP_SIZE) {
-				int eteam = tmp->map[y + i][x + j].team_nbr;
+				eteam = tmp->map[y + i][x + j].team_nbr;
 				if (eteam != 0 && eteam != tn) {
-					int count = check_others(lemipc, eteam);
-					if (count > 1) {
+					if (check_others(lemipc, eteam) > 1) {
 						return false;
 					}
-					count = 0;
 				}
 			}
 		}
