@@ -38,6 +38,13 @@ static void end(WINDOW *mainwin)
 	refresh();
 }
 
+void mini_display(lemipc_t *lemipc)
+{
+	clear();
+	display_map_ncurses(*(map_t *)lemipc->addr);
+	refresh();
+}
+
 void game_loop(lemipc_t *lemipc)
 {
 	WINDOW *mainwin;
@@ -46,18 +53,16 @@ void game_loop(lemipc_t *lemipc)
 		mainwin = setup(*(map_t *)lemipc->addr);
 	while (!check_start((map_t *)lemipc->addr))
 		sleep(1);
-	while (is_alive(lemipc)) {
-		if (lemipc->is_first && lemipc->ncurses) {
-			clear();
-			display_map_ncurses(*(map_t *)lemipc->addr);
-			refresh();
-		}
+	while (is_alive(lemipc) && !check_end((map_t *)lemipc->addr)) {
+		if (lemipc->is_first && lemipc->ncurses)
+			mini_display(lemipc);
 		else if (lemipc->is_first)
 			display_map(*(map_t *)lemipc->addr);
 		lemipc = move_ia(lemipc);
 		sleep(1);
 	}
-	while (lemipc->is_first && check_end((map_t *)lemipc->addr))
+	clean_position(lemipc);
+	while (lemipc->is_first && !check_end((map_t *)lemipc->addr))
 		continue_display(lemipc);
 	if (lemipc->is_first && lemipc->ncurses)
 		end(mainwin);
