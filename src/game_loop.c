@@ -54,9 +54,10 @@ void game_loop(lemipc_t *lemipc)
 		}
 		else if (lemipc->is_first)
 			display_map(*(map_t *)lemipc->addr);
+		lemipc = move_ia(lemipc);
 		sleep(1);
 	}
-	while (lemipc->is_first && !check_end((map_t *)lemipc->addr))
+	while (lemipc->is_first && check_end((map_t *)lemipc->addr))
 		continue_display(lemipc);
 	if (lemipc->is_first && lemipc->ncurses)
 		end(mainwin);

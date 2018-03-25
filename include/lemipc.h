@@ -19,6 +19,7 @@
 	#include <time.h>
 	#include <unistd.h>
 	#include <ncurses.h>
+	#include <math.h>
 
 	#define MAP_SIZE 20
 
@@ -68,6 +69,7 @@
 	lemipc_t *move_right(lemipc_t *);
 	lemipc_t *move_top(lemipc_t *);
 	lemipc_t *move_down(lemipc_t *);
+	lemipc_t *move_ia(lemipc_t *);
 	void close_and_clean(lemipc_t *);
 	team_player_t *get_tab_player(map_t *);
 	bool is_ncurses(int ac, char **av);

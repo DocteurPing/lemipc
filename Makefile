@@ -9,7 +9,7 @@ CC      =	gcc
 
 CFLAGS  =	-W -Wall -Wextra -Iinclude
 
-LFLAGS	=	-lncurses
+LFLAGS	=	-lncurses -lm
 
 NAME    =	lemipc
 
@@ -32,7 +32,8 @@ SRC     =	main.c			\
 		display_map_ncurses.c	\
 		check_end.c		\
 		continue_display.c	\
-		check_start.c
+		check_start.c		\
+		ia.c
 
 SRC     :=      $(addprefix $(SRCDIR)/, $(SRC))
 
