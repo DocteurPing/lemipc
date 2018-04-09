@@ -33,7 +33,6 @@ int main(int ac, char **av)
 	if (lemipc == NULL)
 		return (84);
 	lemipc->sem_id = fill_main_struct_sem(lemipc->key);
-	lemipc->ncurses = is_ncurses(ac, av);
 	if (lemipc->is_first) {
 		init_map(my_map);
 		if (my_map == NULL)

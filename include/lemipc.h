@@ -18,7 +18,6 @@
 	#include <sys/sem.h>
 	#include <time.h>
 	#include <unistd.h>
-	#include <ncurses.h>
 	#include <math.h>
 
 	#define MAP_SIZE 20
@@ -40,7 +39,6 @@
 
 	typedef struct	lemipc_s {
 		bool is_first;
-		bool ncurses;
 		key_t key;
 		int shm_id;
 		int sem_id;
@@ -60,7 +58,6 @@
 	lemipc_t *fill_main_struct_shm(char *);
 	int fill_main_struct_sem(int);
 	void display_map(map_t);
-	void display_map_ncurses(map_t);
 	void game_loop(lemipc_t *);
 	lemipc_t *init_player(lemipc_t *, char *);
 	void get_access_memory(int);
@@ -73,7 +70,6 @@
 	void close_and_clean(lemipc_t *);
 	void clean_position(lemipc_t *);
 	team_player_t *get_tab_player(map_t *);
-	bool is_ncurses(int, char **);
 	bool check_end(map_t *);
 	bool check_start(map_t *);
 	void continue_display(lemipc_t *);

@@ -9,7 +9,7 @@ CC      =	gcc
 
 CFLAGS  =	-W -Wall -Wextra -Iinclude
 
-LFLAGS	=	-lncurses -lm
+LFLAGS	=	-lm
 
 NAME    =	lemipc
 
@@ -29,7 +29,6 @@ SRC     =	main.c			\
 		game_loop.c		\
 		get_tab_player.c	\
 		is_alive.c		\
-		display_map_ncurses.c	\
 		check_end.c		\
 		continue_display.c	\
 		check_start.c		\
