@@ -7,12 +7,12 @@
 
 #include "lemipc.h"
 
-int check_others(lemipc_t *lemipc, int team_nbr)
+int check_others(lemipc_t lemipc, int team_nbr)
 {
 	int count = 0;
-	map_t *tmp = (map_t *)lemipc->addr;
-	int y = lemipc->pos.y;
-	int x = lemipc->pos.x;
+	map_t *tmp = (map_t *)lemipc.addr;
+	int y = lemipc.pos.y;
+	int x = lemipc.pos.x;
 	int cteam;
 
 	for (int i = y > 0 ? -1 : 0; i <= 1; i++) {
@@ -28,11 +28,11 @@ int check_others(lemipc_t *lemipc, int team_nbr)
 	return count;
 }
 
-bool is_alive(lemipc_t *lemipc)
+bool is_alive(lemipc_t lemipc)
 {
-	map_t *tmp = (map_t *)lemipc->addr;
-	int y = lemipc->pos.y;
-	int x = lemipc->pos.x;
+	map_t *tmp = (map_t *)lemipc.addr;
+	int y = lemipc.pos.y;
+	int x = lemipc.pos.x;
 	int tn = tmp->map[y][x].team_nbr;
 	int eteam;
 

@@ -30,20 +30,20 @@ pos_t	find_enemy(pos_t my_pos, size_t nbr_team, map_t *map)
 	return (to_return);
 }
 
-lemipc_t *move_ia(lemipc_t *lemipc)
+lemipc_t move_ia(lemipc_t lemipc)
 {
-	pos_t pos = find_enemy(lemipc->pos,
-	((map_t *)lemipc->addr)->map[lemipc->pos.y][lemipc->pos.x].team_nbr,
-	((map_t *)lemipc->addr));
+	pos_t pos = find_enemy(lemipc.pos,
+	((map_t *)lemipc.addr)->map[lemipc.pos.y][lemipc.pos.x].team_nbr,
+	((map_t *)lemipc.addr));
 	int random_nbr = rand() % 4;
 
-	if (pos.x < lemipc->pos.x && random_nbr == 0)
+	if (pos.x < lemipc.pos.x && random_nbr == 0)
 		return (lemipc = move_left(lemipc));
-	if (pos.x > lemipc->pos.x && random_nbr == 1)
+	if (pos.x > lemipc.pos.x && random_nbr == 1)
 		return (lemipc = move_right(lemipc));
-	if (pos.y < lemipc->pos.y && random_nbr == 2)
+	if (pos.y < lemipc.pos.y && random_nbr == 2)
 		return (lemipc = move_top(lemipc));
-	if (pos.y > lemipc->pos.y && random_nbr == 3)
+	if (pos.y > lemipc.pos.y && random_nbr == 3)
 		return (lemipc = move_down(lemipc));
 	return (move_ia(lemipc));
 }

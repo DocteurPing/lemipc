@@ -51,27 +51,27 @@
 		int nbr;
 	}		team_player_t;
 
-	bool is_alive(lemipc_t *);
-	lemipc_t *move_player(lemipc_t *, int, int);
+	bool is_alive(lemipc_t);
+	lemipc_t move_player(lemipc_t, int, int);
 	int parse_params(int, char **);
 	void print_usage(void);
-	lemipc_t *fill_main_struct_shm(char *);
+	lemipc_t fill_main_struct_shm(char *);
 	int fill_main_struct_sem(int);
 	void display_map(map_t);
-	void game_loop(lemipc_t *);
-	lemipc_t *init_player(lemipc_t *, char *);
+	void game_loop(lemipc_t);
+	lemipc_t init_player(lemipc_t, char *);
 	void get_access_memory(int);
 	void left_memory_access(int);
-	lemipc_t *move_left(lemipc_t *);
-	lemipc_t *move_right(lemipc_t *);
-	lemipc_t *move_top(lemipc_t *);
-	lemipc_t *move_down(lemipc_t *);
-	lemipc_t *move_ia(lemipc_t *);
-	void close_and_clean(lemipc_t *);
-	void clean_position(lemipc_t *);
+	lemipc_t move_left(lemipc_t);
+	lemipc_t move_right(lemipc_t);
+	lemipc_t move_top(lemipc_t);
+	lemipc_t move_down(lemipc_t);
+	lemipc_t move_ia(lemipc_t);
+	void close_and_clean(lemipc_t);
+	void clean_position(lemipc_t);
 	team_player_t *get_tab_player(map_t *);
 	bool check_end(map_t *);
 	bool check_start(map_t *);
-	void continue_display(lemipc_t *);
+	void continue_display(lemipc_t);
 
 #endif /* !LEMIPC_H_ */
