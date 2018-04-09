@@ -25,20 +25,14 @@ void init_map(map_t *my_map)
 int main(int ac, char **av)
 {
 	lemipc_t lemipc;
-	map_t *my_map = malloc(sizeof(map_t));
 
 	if (parse_params(ac, av) == 84)
 		return (84);
 	lemipc = fill_main_struct_shm(av[1]);
 	lemipc.sem_id = fill_main_struct_sem(lemipc.key);
-	if (lemipc.is_first) {
-		init_map(my_map);
-		if (my_map == NULL)
-			return (84);
-		memcpy(lemipc.addr, my_map, sizeof(map_t));
-	}
+	if (lemipc.is_first)
+		init_map((map_t *)lemipc.addr);
 	lemipc = init_player(lemipc, av[2]);
 	game_loop(lemipc);
-	free(my_map);
 	return (0);
 }
