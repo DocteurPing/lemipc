@@ -21,6 +21,7 @@ bool check_start(map_t *map)
 		if (tmp[i].nbr > 1)
 			check++;
 	}
+	free(tmp);
 	if (check > 1)
 		return (true);
 	return (false);

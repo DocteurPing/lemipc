@@ -42,5 +42,6 @@ int main(int ac, char **av)
 	}
 	lemipc = init_player(lemipc, av[2]);
 	game_loop(lemipc);
+	free(my_map);
 	return (0);
 }
