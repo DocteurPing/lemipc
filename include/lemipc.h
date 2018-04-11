@@ -16,11 +16,15 @@
 	#include <sys/types.h>
 	#include <sys/shm.h>
 	#include <sys/sem.h>
+	#include <sys/msg.h>
 	#include <time.h>
 	#include <unistd.h>
 	#include <math.h>
+	#include <signal.h>
 
 	#define MAP_SIZE 20
+
+	extern int msg_id;
 
 	typedef struct	pos_s {
 		int x;
@@ -51,12 +55,18 @@
 		int nbr;
 	}		team_player_t;
 
+	typedef struct	msg_s {
+		long mtype;
+		char mtext[10];
+	}		msg_t;
+
 	bool is_alive(lemipc_t);
 	lemipc_t move_player(lemipc_t, int, int);
 	int parse_params(int, char **);
 	void print_usage(void);
 	lemipc_t fill_main_struct_shm(char *);
 	int fill_main_struct_sem(int);
+	int fill_main_struct_msg(int);
 	void display_map(map_t);
 	void game_loop(lemipc_t);
 	lemipc_t init_player(lemipc_t, char *);

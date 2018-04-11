@@ -48,3 +48,20 @@ int	fill_main_struct_sem(int key)
 	#endif
 	return (sem_id);
 }
+
+int	fill_main_struct_msg(int key)
+{
+	msg_id = msgget(key, SHM_R | SHM_W);
+	if (msg_id == -1) {
+		msg_id = msgget(key, IPC_CREAT | SHM_R | SHM_W);
+		if (msg_id == -1)
+			perror("msgget");
+		#ifdef DEBUG
+		printf("Created msg %d\n", msg_id);
+		#endif
+	}
+	#ifdef DEBUG
+	printf("Using msg %d\n", msg_id);
+	#endif
+	return (msg_id);
+}

@@ -44,7 +44,7 @@ $(NAME):	$(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LFLAGS)
 
 debug:	CFLAGS+= -DDEBUG -g3
-debug:	$(NAME)
+debug:	fclean $(NAME)
 
 clean:
 	$(RM) $(addsuffix ~, $(SRC))
