@@ -30,13 +30,45 @@ pos_t	find_enemy(pos_t my_pos, size_t nbr_team, map_t *map)
 	return (to_return);
 }
 
+pos_t get_pos_from_msg(char *str)
+{
+	pos_t pos;
+
+	pos.x = str[0];
+	pos.y = str[1];
+	return (pos);
+}
+
+pos_t get_pos(lemipc_t lemipc)
+{
+	pos_t pos;
+	msg_t my_msg;
+	size_t team_nbr =
+	((map_t *)lemipc.addr)->map[lemipc.pos.y][lemipc.pos.x].team_nbr;
+
+	get_access_memory(lemipc.sem_id);
+	left_memory_access(lemipc.sem_id);
+	bzero(&my_msg, sizeof(my_msg));
+	msgrcv(msg_id, &my_msg, sizeof(my_msg), 1, 0);
+	if ((size_t)my_msg.mtype != team_nbr) {
+		pos = find_enemy(lemipc.pos, team_nbr, ((map_t *)lemipc.addr));
+		my_msg.mtype = team_nbr;
+		my_msg.mtext[0] = pos.x;
+		my_msg.mtext[1] = pos.y;
+		msgsnd(msg_id, &my_msg, sizeof(my_msg), 0);
+		msgctl(msg_id, IPC_RMID, NULL);
+	}
+	else
+		pos = get_pos_from_msg(my_msg.mtext);
+	return (pos);
+}
+
 lemipc_t move_ia(lemipc_t lemipc)
 {
-	pos_t pos = find_enemy(lemipc.pos,
-	((map_t *)lemipc.addr)->map[lemipc.pos.y][lemipc.pos.x].team_nbr,
-	((map_t *)lemipc.addr));
 	int random_nbr = rand() % 4;
+	pos_t pos;
 
+	pos = get_pos(lemipc);
 	if (pos.x < lemipc.pos.x && random_nbr == 0)
 		return (lemipc = move_left(lemipc));
 	if (pos.x > lemipc.pos.x && random_nbr == 1)

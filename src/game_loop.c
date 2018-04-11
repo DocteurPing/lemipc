@@ -33,9 +33,8 @@ void game_loop(lemipc_t lemipc)
 	msgrcv(msg_id, &my_msg, sizeof(my_msg), 1, 0);
 	while (!check_start((map_t *)lemipc.addr))
 		sleep(1);
-	while (is_alive(lemipc) && !check_end((map_t *)lemipc.addr) && my_msg.mtype != 1) {
+	while (is_alive(lemipc) && !check_end((map_t *)lemipc.addr)) {
 		msgrcv(msg_id, &my_msg, sizeof(my_msg), 1, 0);
-		printf("recieved message %ld : %s\n", my_msg.mtype, my_msg.mtext);
 		if (lemipc.is_first)
 			display_map(*(map_t *)lemipc.addr);
 		lemipc = move_ia(lemipc);
