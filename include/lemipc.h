@@ -21,10 +21,9 @@
 	#include <unistd.h>
 	#include <math.h>
 	#include <signal.h>
+	#include <errno.h>
 
 	#define MAP_SIZE 20
-
-	extern int msg_id;
 
 	typedef struct	pos_s {
 		int x;
@@ -46,6 +45,7 @@
 		key_t key;
 		int shm_id;
 		int sem_id;
+		int msg_id;
 		pos_t pos;
 		void *addr;
 	}		lemipc_t;
@@ -83,5 +83,6 @@
 	bool check_end(map_t *);
 	bool check_start(map_t *);
 	void continue_display(lemipc_t);
+	pos_t rcv_msg(int, int);
 
 #endif /* !LEMIPC_H_ */

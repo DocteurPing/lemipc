@@ -32,7 +32,8 @@ SRC     =	main.c			\
 		check_end.c		\
 		continue_display.c	\
 		check_start.c		\
-		ia.c
+		ia.c			\
+		msg.c
 
 SRC     :=      $(addprefix $(SRCDIR)/, $(SRC))
 

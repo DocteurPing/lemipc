@@ -9,8 +9,6 @@
 
 void continue_display(lemipc_t lemipc)
 {
-	if (lemipc.is_first) {
-		display_map(*(map_t *)lemipc.addr);
-		sleep(1);
-	}
+	display_map(*(map_t *)lemipc.addr);
+	sleep(1);
 }

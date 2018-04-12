@@ -51,7 +51,8 @@ int	fill_main_struct_sem(int key)
 
 int	fill_main_struct_msg(int key)
 {
-	msg_id = msgget(key, SHM_R | SHM_W);
+	int msg_id = msgget(key, SHM_R | SHM_W);
+
 	if (msg_id == -1) {
 		msg_id = msgget(key, IPC_CREAT | SHM_R | SHM_W);
 		if (msg_id == -1)

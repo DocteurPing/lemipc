@@ -27,5 +27,6 @@ void close_and_clean(lemipc_t lemipc)
 	if (((map_t *)lemipc.addr)->nbr_player == 1) {
 		shmctl(lemipc.shm_id, 0, IPC_RMID);
 		semctl(lemipc.sem_id, 0, IPC_RMID);
+		msgctl(lemipc.msg_id, IPC_RMID, NULL);
 	}
 }

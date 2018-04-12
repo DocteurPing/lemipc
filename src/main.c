@@ -30,8 +30,11 @@ int main(int ac, char **av)
 		return (84);
 	lemipc = fill_main_struct_shm(av[1]);
 	lemipc.sem_id = fill_main_struct_sem(lemipc.key);
-	if (lemipc.is_first)
+	//lemipc.msg_id = fill_main_struct_msg(lemipc.key);
+	if (lemipc.is_first) {
+		printf("bite\n");
 		init_map((map_t *)lemipc.addr);
+	}
 	lemipc = init_player(lemipc, av[2]);
 	game_loop(lemipc);
 	return (0);
