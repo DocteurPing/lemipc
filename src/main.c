@@ -29,12 +29,16 @@ int main(int ac, char **av)
 	if (parse_params(ac, av) == 84)
 		return (84);
 	lemipc = fill_main_struct_shm(av[1]);
+	if (lemipc == NULL)
+		return (84);
 	lemipc.sem_id = fill_main_struct_sem(lemipc.key);
-	//lemipc.msg_id = fill_main_struct_msg(lemipc.key);
-	if (lemipc.is_first) {
-		printf("bite\n");
+	if (lemipc.sem_id == -1)
+		return (84);
+	lemipc.msg_id = fill_main_struct_msg(lemipc.key);
+	if (lemipc.msg_id == -1)
+		return (84);
+	if (lemipc.is_first)
 		init_map((map_t *)lemipc.addr);
-	}
 	lemipc = init_player(lemipc, av[2]);
 	game_loop(lemipc);
 	return (0);

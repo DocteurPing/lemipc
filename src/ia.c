@@ -46,21 +46,19 @@ pos_t get_pos(lemipc_t lemipc)
 	size_t team_nbr =
 	((map_t *)lemipc.addr)->map[lemipc.pos.y][lemipc.pos.x].team_nbr;
 
-	/* get_access_memory(lemipc.sem_id);
-	left_memory_access(lemipc.sem_id); */
+	get_access_memory(lemipc.sem_id);
 	bzero(&my_msg, sizeof(my_msg));
 	pos = rcv_msg(lemipc.msg_id, team_nbr);
-	if (pos.x >= 0) {
+	if (pos.x < 0) {
 		pos = find_enemy(lemipc.pos, team_nbr, ((map_t *)lemipc.addr));
 		my_msg.mtype = team_nbr;
 		my_msg.mtext[0] = pos.x;
 		my_msg.mtext[1] = pos.y;
-		msgsnd(lemipc.msg_id, &my_msg, sizeof(my_msg), 0);
+		msgsnd(lemipc.msg_id, &my_msg, sizeof(my_msg.mtext), 0);
 	}
-	else {
-		printf("recieve msg\n");
+	else
 		pos = get_pos_from_msg(my_msg.mtext);
-	}
+	left_memory_access(lemipc.sem_id);
 	return (pos);
 }
 

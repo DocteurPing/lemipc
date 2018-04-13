@@ -15,7 +15,7 @@ pos_t	rcv_msg(int id, int team_nbr)
 	to_return.x = -1;
 	to_return.y = -1;
 	msg.mtype = team_nbr;
-	msgrcv(id, &msg, sizeof(msg_t), team_nbr, 0);
+	msgrcv(id, &msg, sizeof(msg.mtext), team_nbr, IPC_NOWAIT);
 	if (errno == ENOMSG)
 		return (to_return);
 	to_return.x = msg.mtext[0];
