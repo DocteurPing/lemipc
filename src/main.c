@@ -29,8 +29,6 @@ int main(int ac, char **av)
 	if (parse_params(ac, av) == 84)
 		return (84);
 	lemipc = fill_main_struct_shm(av[1]);
-	if (lemipc == NULL)
-		return (84);
 	lemipc.sem_id = fill_main_struct_sem(lemipc.key);
 	if (lemipc.sem_id == -1)
 		return (84);
